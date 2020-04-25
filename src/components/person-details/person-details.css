@@ -1,18 +1,16 @@
 .person-details{
-    margin: auto;
     margin-top: 1em;
     border-radius: 5px;
-    width: 40em;
-    height: 18em;
+    width: 50%;
+    min-width: 150px;
     padding: 5px;
-    display: flexbox;
-    align-items: center;
-    justify-content: center;
+    float: right;
+    margin-right: 1em;
+    margin-left: auto;
 }
 .pimg{
-    object-fit: cover;
-    height: 97%;
-    width: 30%;
+    object-fit: contain;
+    height: 200px;
     margin: 5px;
     display: flex;
     float: left;

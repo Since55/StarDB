@@ -12,7 +12,7 @@
     margin: auto;
     margin-top: 1em;
     border-radius: 5px;
-    height: 15em;
+    min-height: 15em;
     padding: 10px;
 }
 
