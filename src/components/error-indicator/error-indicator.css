@@ -1,0 +1,6 @@
+.failImg{
+    width: 150px;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 10px;
+}

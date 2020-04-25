@@ -1,0 +1,26 @@
+.rpimg{
+    object-fit: cover;
+    height: 200px;
+    width: 200px;
+    margin: 10px;
+    display: flex;
+    float: left;
+    border-radius: 5px;
+}
+
+.random-planet{
+    margin: auto;
+    margin-top: 1em;
+    border-radius: 5px;
+    height: 15em;
+    padding: 10px;
+}
+
+
+
+p{
+    margin: auto;
+}
+h3{
+    margin-top: 10px;
+}

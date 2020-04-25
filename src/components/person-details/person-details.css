@@ -1,0 +1,20 @@
+.person-details{
+    margin: auto;
+    margin-top: 1em;
+    border-radius: 5px;
+    width: 40em;
+    height: 18em;
+    padding: 5px;
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+}
+.pimg{
+    object-fit: cover;
+    height: 97%;
+    width: 30%;
+    margin: 5px;
+    display: flex;
+    float: left;
+    border-radius: 5px;
+}

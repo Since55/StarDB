@@ -1,0 +1,14 @@
+.item-list{
+    width: 40em;
+    overflow-y: scroll;
+    padding-top: 4em;
+    margin: auto;
+    margin-top: 1em;
+    border-radius: 5px;
+    width: 40em;
+    height: 15em;
+    padding-top: 15px;
+    display: flexbox;
+    align-items: center;
+    justify-content: center;
+}
