@@ -9,11 +9,13 @@
 }
 
 .random-planet{
-    margin: auto;
-    margin-top: 1em;
+    margin: 1em 4em 1em 4em;
+    /* margin-top: 1em; */
     border-radius: 5px;
     min-height: 15em;
     padding: 10px;
+    min-width: 240px;
+    
 }
 
 

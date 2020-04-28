@@ -23,7 +23,11 @@ export default class extends Component{
 
     componentDidMount(){
         this.updatePlanet();
-        this.interval = setInterval(this.updatePlanet, 5000);
+        this.interval = setInterval(this.updatePlanet, 7500);
+    }
+
+    componentWillUnmount() { 
+        clearInterval(this.interval);
     }
 
     onPlanetLoaded = (planet) => {
@@ -74,8 +78,9 @@ const PlanetView = ({planet}) => {
         rotationPeriond, diameter} = planet;
     return(
         <React.Fragment>
-           <img className='rpimg' 
-                    src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}></img>
+           <img className='rpimg'
+                alt='You Have to use your POWER to see this planet'     
+                src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}></img>
             <h3> {name} </h3>
             <p className="lead"> Population {population}</p>
             <p className="lead"> Rotation Period {rotationPeriond}</p>

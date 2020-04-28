@@ -4,11 +4,14 @@ import './error-indicator.css';
 
 const ErrorIndicator = () => {
     return(
-        <div>
-            <img 
+        <div className='error-cont'>
+             <img 
                 className='failImg'
-                src="https://starwars-visualguide.com/assets/img/placeholder.jpg"></img>
-            <span className='badge-danger'>THIS IS NOT THE DATA YOU ARE LOOKING FOR.</span>
+                alt='Everything is going wrong in this world, don`t mind,
+                You don`t really need it' 
+                src="http://getdrawings.com/vectors/death-star-vector-10.png"></img>
+            <span className='badge-danger'>Looks like something gone wrong, 
+            use Your power, to fix it!</span>
         </div>
     )
 }

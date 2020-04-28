@@ -1,19 +1,91 @@
 import React, { Component } from 'react';
 
+import SwapiService from '../../services/swapi-services';
+import Spinner from '../spinner';
+
 import './person-details.css';
 
 export default class extends Component{
 
+    swapiService = new SwapiService();
+
+    state = {
+        person: null,
+        loading: true
+    };
+
+    componentDidMount(){
+        this.updatePerson();
+    }
+
+    componentDidUpdate(prevProps){
+        if (this.props.personId !== prevProps.personId){
+            this.updatePerson();
+        }
+    }
+
+    onPersonLoaded = (person) => {
+        this.setState({
+            person,
+            loading: false
+        })
+    }
+
+    updatePerson(){
+        this.setState({loading:true})
+        const {personId} = this.props;
+        if (!personId){
+            return;
+        }
+
+        this.swapiService
+            .getPerson(personId)
+            .then( this.onPersonLoaded );
+    }
 
     render(){
+        const {person, loading} = this.state;
+        
+        const spinner = !person || loading ? <Spinner/> : null;
+        const content = person && !loading ? <PersonView person = {person}/> : null;
+        
+
         return(
-            <div className='jumbotron person-details'>
-                <img className='pimg' src='https://images-na.ssl-images-amazon.com/images/I/712Lwo7hMoL._AC_SX425_.jpg'></img>
-                <h3>Name</h3>
-                <p>Gender </p>
-                <p>Birth Year </p>
-                <p>Eye Color </p>
+            <div className='card person-details'>
+                {spinner}
+                {content}
             </div>
         );
     }
+}
+
+const PersonView = ({person}) => {
+
+    const {id, name, gender,
+            birthYear, eyeColor} = person;
+    return(
+        <React.Fragment>
+           <img className='pimg' 
+                    src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+                    alt='You have to use your POWER to see this person'></img>
+            <div className='card-body'>
+            <h3 className='card-header'>{name}</h3>
+                <ul className='list-group list-group-flush'>
+                    <li className='list-group-item'>
+                        <span className='term'>Gender: </span>
+                        <span>{gender}</span>
+                        </li>
+                    <li className='list-group-item'>
+                        <span className='term'>Birth Year: </span>
+                        <span>{birthYear}</span>
+                        </li>
+                    <li className='list-group-item'>
+                        <span className='term'>Eye Color:</span> 
+                        <span>{eyeColor}</span>
+                        </li>
+                </ul>
+            </div> 
+        </React.Fragment>
+    )
+    
 }

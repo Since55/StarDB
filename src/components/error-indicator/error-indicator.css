@@ -3,4 +3,10 @@
     height: 200px;
     object-fit: contain;
     border-radius: 10px;
+    filter:invert(60%) sepia(71%) saturate(4899%) hue-rotate(331deg)
+             brightness(93%) contrast(82%);
+}
+
+.error-cont{
+    /* display: table-row-group; */
 }
