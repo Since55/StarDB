@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 import ItemList from '../item-list'
-import PersonDetails from '../person-details';
-import ErrorIndicator from '../error-indicator';
+import ItemDetails from '../item-details';
 import SwapiService from '../../services/swapi-services';
+import ErrorBoundry from '../error-boundry';
+import DoubleContainer from '../double-container/double-container';
 
 import './people-page.css';
 
@@ -12,41 +13,38 @@ export default class PeoplePage extends Component{
     swapiService = new SwapiService();
 
     state = {
-        selectedPerson: 1,
-        hasError: false
+        selectedItem: 1,
     };
 
-    componentDidCatch(){
-        this.setState({
-            hasError: true
-        })
-    }
-
-    onPersonSelected = (id) => {
+    onItemSelected = (id) => {
         this.setState( {
-            selectedPerson:id
+            selectedItem:id
         })
     }
 
     render(){
 
-        if(this.state.hasError) {
-            return (
-                <div className='page container-lg'>
-                    <ErrorIndicator/>
-                </div>
-            )
-        }
+        const itemList = (
+            <ErrorBoundry>
+                <ItemList 
+                onItemSelected={this.onItemSelected}
+                getData={this.swapiService.getAllPeople }>
+                {(i) => 
+                    `${i.name} (${i.gender}, ${i.birthYear})`}
+                </ItemList>
+            </ErrorBoundry>
+        )
+
+        const itemDetails = (
+            <ErrorBoundry>
+                <ItemDetails itemId={this.state.selectedItem}/>
+            </ErrorBoundry>
+        )
 
         return(
-            <div className='page container-lg'>
-                <ItemList 
-                    onItemSelected={this.onPersonSelected}
-                    getData={this.swapiService.getAllPeople }
-                    renderItem = {({name, gender, birthYear}) => 
-                        `${name} (${gender}, ${birthYear})`}/>
-                <PersonDetails personId={this.state.selectedPerson}/>
-            </div>
+            <React.Fragment>
+                <DoubleContainer left={itemList} right={itemDetails}/>
+            </React.Fragment>
         )
     }
 }

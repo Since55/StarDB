@@ -16,10 +16,6 @@ export default class extends Component{
         error: false
     }
     
-    constructor(){
-        super();
-        
-    }
 
     componentDidMount(){
         this.updatePlanet();
