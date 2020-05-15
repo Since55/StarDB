@@ -26,7 +26,6 @@ export default class extends Component{
 
     state = {
         item: null,
-        loading: true,
         image: null
     };
 
@@ -65,17 +64,12 @@ export default class extends Component{
     }
 
     render(){
-        const {item, loading, image} = this.state;
-        
+        const {item, image} = this.state;
 
-        const spinner = !item || loading ? <Spinner/> : null;
-        // const content = item && !loading ? <ItemView item = {item} image = {image}/> : null;
         if(!item){ return (<Spinner/>)}
 
         return(
-            <div className='card person-details'>
-                {/* {spinner} */}
-                {/* {content} */}
+            <div className='person-details container card '>
                 <img className='pimg' 
                     src={image}
                     alt='You have to use your POWER to see this person'></img>
@@ -95,39 +89,39 @@ export default class extends Component{
     }
 }
 
-const ItemView = ({item, image}) => {
+// const ItemView = ({item, image}) => {
 
-    const {id, name, gender,
-            birthYear, eyeColor} = item;
-    return(
-        <React.Fragment>
-           <img className='pimg' 
-                    src={image}
-                    alt='You have to use your POWER to see this person'></img>
-            <div className='card-body'>
-            {/* <h3 className='card-header'>{name}</h3> */}
-                <ul className='list-group list-group-flush'>
-                    {/* React.Children.map( this.props.chi) */}
-                </ul>
-            </div> 
-        </React.Fragment>
-    )
+//     const {id, name, gender,
+//             birthYear, eyeColor} = item;
+//     return(
+//         <React.Fragment>
+//            <img className='pimg' 
+//                     src={image}
+//                     alt='You have to use your POWER to see this person'></img>
+//             <div className='card-body'>
+//             {/* <h3 className='card-header'>{name}</h3> */}
+//                 <ul className='list-group list-group-flush'>
+//                     {/* React.Children.map( this.props.chi) */}
+//                 </ul>
+//             </div> 
+//         </React.Fragment>
+//     )
     
-}
+// }
 
 
 
 
 // `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
-{/* <li className='list-group-item'>
-    <span className='term'>Gender: </span>
-    <span>{gender}</span>
-    </li>
-<li className='list-group-item'>
-    <span className='term'>Birth Year: </span>
-    <span>{birthYear}</span>
-    </li>
-<li className='list-group-item'>
-    <span className='term'>Eye Color:</span> 
-    <span>{eyeColor}</span>
-    </li> */}
+// {/* <li className='list-group-item'>
+//     <span className='term'>Gender: </span>
+//     <span>{gender}</span>
+//     </li>
+// <li className='list-group-item'>
+//     <span className='term'>Birth Year: </span>
+//     <span>{birthYear}</span>
+//     </li>
+// <li className='list-group-item'>
+//     <span className='term'>Eye Color:</span> 
+//     <span>{eyeColor}</span>
+//     </li> */}

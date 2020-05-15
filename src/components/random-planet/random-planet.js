@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import SwapiService from '../../services/swapi-services';
 import Spinner from '../spinner';
@@ -6,9 +7,18 @@ import ErrorIndicator from '../error-indicator';
 
 import './random-planet.css';
 
-export default class extends Component{
+export default class RandomPlanet extends Component{
 
     swapiService = new SwapiService();
+
+    
+    static defaultProps = {
+        updateInterval: 30000
+    };
+
+    static propTypes = {
+        updateInterval: PropTypes.number
+    };
 
     state = {
         planet: {},
@@ -19,7 +29,7 @@ export default class extends Component{
 
     componentDidMount(){
         this.updatePlanet();
-        this.interval = setInterval(this.updatePlanet, 7500);
+        this.interval = setInterval(this.updatePlanet, this.props.updateInterval);
     }
 
     componentWillUnmount() { 
@@ -60,7 +70,7 @@ export default class extends Component{
         const content = hasData ? <PlanetView planet={planet}/> : null;
 
         return(
-            <div className="jumbotron random-planet">
+            <div className="jumbotron random-planet container-lg">
                 {errorMsg}
                 {spinner}
                 {content}

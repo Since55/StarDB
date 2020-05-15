@@ -1,23 +1,16 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from '../header';
-import RandomPlanet from '../random-planet';
-import PeoplePage from '../people-page';
 import SwapiService from '../../services/swapi-services';
-import DoubleContainer from '../double-container/double-container';
-import ItemList from '../item-list';
-import ItemDetails, { Record } from '../item-details';
-import {
-    PersonList,
-    PlanetList,
-    StarshipList,
-    PersonDetails,
-    PlanetDetails,
-    StarshipDetails
-} from '../sw-components'
+import {SwapiServiceProvider} from '../swapi-service-context.js';
+import RandomPlanet from '../random-planet';
+import {PeoplePage, PlanetPage, StarshipsPage} from '../pages'
+import ErrorBoundry from '../error-boundry';
+
 
 import './app.css';
-
+import { StarshipDetails } from '../sw-components';
 
 export default class App extends Component {    
 
@@ -25,39 +18,30 @@ export default class App extends Component {
     
     render(){
 
-        const {getPerson, getStarship, getPersonImage,
-            getStarshipImage, getAllPeople} = this.swapiService;
-
-        const starshipDetails = (
-            <ItemDetails 
-                itemId={5}
-                getData={ getStarship }
-                getImageUrl = { getStarshipImage }>
-                    <Record field='model' label='Model'/>
-                    <Record field='length' label='Length'/>
-                    <Record field='cost' label='Cost'/>
-            </ItemDetails>
-        )
-        
-        const itemList = (
-            <PersonList>
-                { ({name}) => 
-                    <span>{name}</span>
-                }
-            </PersonList>
-        )
-
-        const personDetails = (
-            <PersonDetails itemId={80}/>
-        )
         return(
-            <div className='app.css'>
-                <Header/>
-                <DoubleContainer
-                    left={itemList}
-                    right={personDetails}
-                />
-            </div>
+            <ErrorBoundry>
+                <SwapiServiceProvider value = {this.swapiService}>
+                    <Router>
+                        <div>
+                            <Header/>
+                            <RandomPlanet/>
+
+                            <Route path="/" 
+                                render={() => <h2>Welcome to Star Wars DataBase</h2>}
+                                exact/>
+                            <Route path="/people/:id?" component={PeoplePage}/>
+                            <Route path="/planets" component={PlanetPage}/>
+                            <Route path="/starships" exact component={StarshipsPage}/>
+                            <Route path="/starships/:id" 
+                                    render={({match}) => {
+                                        const {id} = match.params
+                                        return <StarshipDetails itemId={id}/>
+                                    }}/>
+
+                        </div>
+                    </Router>
+                </SwapiServiceProvider>
+            </ErrorBoundry>
         );
     };
 }

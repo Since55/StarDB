@@ -1,12 +1,14 @@
 .person-details{
     border-radius: 5px;
-    width: 40%;
+    /* width: 50%; */
     min-width: 500px;
-    padding: 5px;
-    float: left;
-    margin-top: 1em;
-    margin-right: 2em;
-    margin-left: 4em;
+    /* padding: 5px; */
+    /* float: left; */
+    /* margin-top: 1em; */
+    /* margin-right: 2em; */
+    /* margin-left: 4em; */
+    /* margin: ; */
+    /* display: flex; */
 }
 .pimg{
     object-fit: contain;

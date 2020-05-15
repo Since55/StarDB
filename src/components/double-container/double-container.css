@@ -1,0 +1,7 @@
+.cont > *{
+    margin-right: 1em
+} 
+.cont{
+    display: flex;
+}
+
