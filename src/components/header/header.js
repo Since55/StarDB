@@ -28,6 +28,12 @@ const Header = () => {
                     <li className="nav-item">
                         <Link className="nav-link btn btn-primary btn-sm" to="/starships/">Starships</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className="nav-link btn btn-primary btn-sm" to="/login">Login</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link btn btn-primary btn-sm" to="/secret">Secret</Link>
+                    </li>
                 </ul>
             </div>
         </div>
